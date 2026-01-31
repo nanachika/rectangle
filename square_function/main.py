@@ -1,5 +1,6 @@
 import random
 import square
+import turtle
 colors = ["red", "blue", "green", "orange", "purple", "pink", "brown", "gray"]
 def main():
     for i in range(10):
@@ -10,5 +11,6 @@ def main():
         color = random.choice(colors)
         square.square(x, y, h, w, color)
         print(f"x={x}, y={y}, h={h}, w={w}, цвет={color}")
+    turtle.done()
 if __name__ == "__main__":
     main()
