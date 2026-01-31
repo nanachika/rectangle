@@ -7,9 +7,9 @@ colors = ["red", "blue", "green", "orange", "purple", "pink", "brown", "gray"]
 def main():
     x = random.randrange(0, 200)
     y = random.randrange(0, 200)
-    h1= random.randrange(0, 200)
+    h1= random.randrange(20, 200)
     h2 = random.randrange(10, h1)
-    w1 = random.randrange(0, 200)
+    w1 = random.randrange(20, 200)
     w2 = random.randrange(10, w1)
     color1 = random.choice(colors)
     color2 = random.choice([c for c in colors if c != color1])  # другой цвет
