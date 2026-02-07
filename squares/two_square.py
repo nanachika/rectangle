@@ -14,6 +14,10 @@ def main():
     color2 = random.choice([c for c in colors if c != color1])  
     square.square(x, y, h1, w1, color1)
     cx, cy = medium.medium(x, y, h1, w1)
+    turtle.penup()
+    turtle.goto(cx, cy)
+    turtle.pendown()
+    turtle.dot(10, "black") #центр первого прямоугольника
     x2,y2 = medium.second_square(cx,cy,h2,w2)
     square.square(x2, y2, h2, w2, color2)
     print(f"x={x}, y={y}, h={h1}, w={w1}, цвет={color1}")
