@@ -24,6 +24,8 @@ def main():
         # Координаты для текущего внутреннего (относительно текущего внешнего)
         x2 = x + (w1 - w2) / 2
         y2 = y + (h1 - h2) / 2
+        h2 = h2 * (1 - random.randrange(10, 20) / 100)
+        w2 = w2 * (1 - random.randrange(10, 20) / 100)
         # Рисуем
         square.square(x2, y2, h2, w2, color2)
 
