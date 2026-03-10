@@ -8,26 +8,16 @@ colors = ["red", "blue", "green", "orange", "purple", "pink", "brown", "gray"]
 def main():
     x = random.randrange(0, 200)
     y = random.randrange(0, 200)
-    h1 = random.randrange(20, 200)
-    w1 = random.randrange(20, 200)
+    h = random.randrange(20, 200)
+    w = random.randrange(20, 200)
     color1 = random.choice(colors)
-
+    square.square(x, y, h, w, color1)
     for i in range(n):
-        # Координаты для текущего внутреннего (относительно текущего внешнего)
-        color1 = random.choice(colors)
-        h2 = h1 * (1 - random.randrange(10, 20) / 100)
-        w2 = w1 * (1 - random.randrange(10, 20) / 100)
-        x2 = x + (w1 - w2) / 2
-        y2 = y + (h1 - h2) / 2
+        color2 = random.choice(colors)
+        x_i = x + i * (w / n)
+        y_i = y
         # Рисуем
-        square.square(x2, y2, h2, w2, color1)
-        # Этот прямоугольник становится внешним для следующего
-        x, y = x2, y2
-        h1, w1 = h2, w2
-
-        # Уменьшаем размеры для следующего внутреннего
-        h2 = h2 * (1 - random.randrange(10, 20) / 100)
-        w2 = w2 * (1 - random.randrange(10, 20) / 100)
+        square.square(x_i, y_i, h, w/n, color2)
 
     turtle.done()
 
