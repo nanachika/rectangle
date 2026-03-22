@@ -2,26 +2,26 @@ import turtle
 import fun.square as sq
 import fun.circle as sr
 
-def generate(cmd, n):
-    fig = []
+def generate(cmd, n, fig_list):
+
     if cmd == 'r':
         for i in range(1, n + 1):
-            x = int(input(f'x {i}: '))
-            y = int(input(f'y {i}: '))
-            h = int(input(f'h {i}: '))
-            w = int(input(f'w {i}: '))
+            print(f"Прямоугольник {i}")
+            x = int(input('x: '))
+            y = int(input('y: '))
+            h = int(input('h: '))
+            w = int(input('w: '))
             color = input('цвет: ')
-            rect = ['rect', x, y, h, w, color]
-            fig.append(rect)
+            fig_list.append(['rect', x, y, h, w, color])
     elif cmd == 's':
         for i in range(1, n + 1):
-            x = int(input(f'x {i}: '))
-            y = int(input(f'y {i}: '))
-            r = int(input(f'r {i}: '))
+            print(f"Круг {i}")
+            x = int(input('x: '))
+            y = int(input('y: '))
+            r = int(input('r: '))
             color = input('цвет: ')
-            circle = ['circle', x, y, r, color]
-            fig.append(circle)
-    return fig
+            fig_list.append(['circle', x, y, r, color])
+
 
 def render(data):
     for shape in data:
@@ -32,19 +32,17 @@ def render(data):
     turtle.done()
 
 def main():
+    all_figures = []
     while True:
-        cmd = input('Что хотите нарисовать (r - прямоугольник, s - круг, exit - выход): ')
+        cmd = input('Что добавить? (r - прямоугольник, s - круг, exit - нарисовать всё и выйти): ')
         if cmd == 'exit':
             break
-        elif cmd == 'r':
-            n = int(input('Количество прямоугольников: '))
-            x = generate(cmd, n)
-            render(x)
-        elif cmd == 's':
-            n = int(input('Количество кругов: '))
-            x = generate(cmd, n)
-            render(x)
-
+        elif cmd in ('r', 's'):
+            n = int(input('Сколько фигур этого типа? '))
+            generate(cmd, n, all_figures)
+        else:
+            print("Неизвестная команда, попробуйте r, s или exit")
+    render(all_figures)
 
 if __name__ == "__main__":
     main()
