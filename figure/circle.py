@@ -1,4 +1,4 @@
-from .fig import Figure
+from figure.fig import Figure
 from fun.circle import draw_circles
 
 class Circle(Figure):

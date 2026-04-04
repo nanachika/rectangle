@@ -1,4 +1,4 @@
-from .fig import Figure
+from figure.fig import Figure
 from fun.square import square
 from typing import override
 
