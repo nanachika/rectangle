@@ -9,5 +9,5 @@ class Circle(Figure):
         self.color = color
     
 
-    def draw(self):
-        draw_circles(self.x,self.y,self.r,self.color)
+    def draw(self, screen):
+        draw_circles(self.x,self.y,self.r,self.color,screen)

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Figure:
+class Figure(ABC):
     @abstractmethod 
-    def draw(self):
+    def draw(self,screen):
         pass

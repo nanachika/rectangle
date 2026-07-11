@@ -1,9 +1,5 @@
-import turtle
+import pygame as pg
 
-def draw_circles(x, y, r,color):
-    turtle.color(color)
-    turtle.penup()
-    turtle.goto(x, y-r)
-    turtle.pendown()
-    turtle.circle(r)
+def draw_circles(x, y, r,color,screen):
+    pg.draw.circle(screen, color, (x, y), r, 2)
 

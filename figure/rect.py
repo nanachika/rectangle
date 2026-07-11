@@ -10,5 +10,5 @@ class Rect(Figure):
         self.w = w
         self.color = color
     @override
-    def draw(self):   
-        square(self.x, self.y, self.h, self.w, self.color)
+    def draw(self,screen):   
+        square(self.x, self.y, self.h, self.w, self.color,screen)
