@@ -9,18 +9,27 @@ def main():
 
     def generate(n):
         lst = []
+        # parent = Rect(100, 100, 300, 200, 'red')
+        # child = Rect(150, 150, 50, 50, 'blue')
+        # parent.add(child)
+        # lst.append(parent)
         for i in range(n):
             vs = random.choice(['0','1'])
             if vs=='1':
-                r = Rect(random.randint(0,800), random.randint(0,600), random.randint(1,100), random.randint(1,200), 'red')
-                lst.append(r)
+                r1 = Rect(random.randint(0,800), random.randint(0,600), random.randint(1,200), random.randint(1,100), 'red')
+                r2_w = random.randint(1, 200)
+                r2_h = random.randint(1, 100)
+                r2 = Rect(random.randint(r1.x, r1.x + r1.w - r2_w), random.randint(r1.y, r1.y + r1.h - r2_h), r2_w, r2_h, 'pink')                
+                lst.append(r1)
+                r1.add(r2)
+
             else:
                 s = Circle(random.randint(0,800), random.randint(0,600), random.randint(1,100),'purple')
                 lst.append(s)
         return lst
 
-    def render(d, screen):
-        for i in d:
+    def render(lst, screen):
+        for i in lst:
             i.draw(screen)
 
     screen = pg.display.set_mode((800, 600))
@@ -29,17 +38,34 @@ def main():
     
     n = random.randint(1, 20)
     x = generate(n)
-    
-    flag_w = True
-    while flag_w:
+    FPS = 60
+    clock = pg.time.Clock()
+    running = True
+    while running:
+
+        screen.fill((0, 0, 0))
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                flag_w = False
-                
+                running = False
+            if event.type == pg.MOUSEBUTTONDOWN:
+                coordinates = event.pos
+                px,py = coordinates
+                for fig in x:
+                    gx = random.randint(0,800)
+                    gy = random.randint(0,600)
+                    if fig.parent is not None:
+                        for f in fig.child:
+                            gx = random.randint(0,f.parent.w)
+                            gy = random.randint(0,f.parent.h)
+                    if fig.inside(px,py):
+                        fig.color = random.choice(['green','pink','blue','orange'])
+                        fig.run(gx,gy)
+                    
         # Твоя отличная отрисовка элементов
+
         render(x, screen)
         pg.display.flip()
-
+        clock.tick(FPS)
     # 2. Освобождаем память и красиво закрываем окно после выхода из цикла
     pg.quit() 
 
