@@ -17,8 +17,8 @@ def main():
             vs = random.choice(['0','1'])
             if vs=='1':
                 r1 = Rect(random.randint(0,800), random.randint(0,600), random.randint(1,200), random.randint(1,100), 'red')
-                r2_w = random.randint(1, 200)
-                r2_h = random.randint(1, 100)
+                r2_w = random.randint(1, r1.w)
+                r2_h = random.randint(1, r1.h)
                 r2 = Rect(random.randint(r1.x, r1.x + r1.w - r2_w), random.randint(r1.y, r1.y + r1.h - r2_h), r2_w, r2_h, 'pink')                
                 lst.append(r1)
                 r1.add(r2)
@@ -51,15 +51,24 @@ def main():
                 coordinates = event.pos
                 px,py = coordinates
                 for fig in x:
-                    gx = random.randint(0,800)
-                    gy = random.randint(0,600)
-                    if fig.parent is not None:
+                    found = False
+                    if fig.child:
                         for f in fig.child:
-                            gx = random.randint(0,f.parent.w)
-                            gy = random.randint(0,f.parent.h)
-                    if fig.inside(px,py):
-                        fig.color = random.choice(['green','pink','blue','orange'])
-                        fig.run(gx,gy)
+                            if f.inside(px - f.parent.x, py - f.parent.y):
+                                found = True
+                                gx = random.randint(0,f.parent.w-f.w)
+                                gy = random.randint(0,f.parent.h-f.h)
+                                f.color = random.choice(['green','pink','blue','orange'])
+                                f.run(gx,gy)
+                                continue
+                    if not found:
+                        if fig.inside(px, py):
+                            gx = random.randint(0,800)
+                            gy = random.randint(0,600)
+                            fig.color = random.choice(['green','pink','blue','orange'])
+                            fig.run(gx,gy)
+                        
+
                     
         # Твоя отличная отрисовка элементов
 

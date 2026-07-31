@@ -5,6 +5,7 @@ class Circle(Figure):
     def __init__(self,x,y,r,color):
         self.r = r
         self.color = color
+        self.child = []
         self.run(x,y)
 
     def draw(self, screen):
